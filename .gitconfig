@@ -1,0 +1,17 @@
+[pull]
+	rebase = true
+[user]
+	name = Matthew Albrecht
+	email = matt@delfina.com
+	signingkey = /Users/matt/.ssh/id_ed25519.pub
+[alias]
+	st = status -sb
+	ll = log --oneline
+	last = log -1 HEAD --stat
+  ca = !sh -c 'git add -A && git commit -m \"$1\"' -
+  po = "!git push --set-upstream origin \"$(git rev-parse --abbrev-ref HEAD)\""
+  pu = "pull upstream dev --rebase"
+  move = !sh -c 'git stash save && git checkout dev && git checkout -b \"$1\" && git stash pop' -
+  recent = branch --sort=-committerdate
+[gpg]
+	format = ssh
