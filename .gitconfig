@@ -11,7 +11,7 @@
   ca = !sh -c 'git add -A && git commit -m \"$1\"' -
   po = "!git push --set-upstream origin \"$(git rev-parse --abbrev-ref HEAD)\""
   pu = "pull upstream dev --rebase"
-  move = !sh -c 'git stash save && git checkout dev && git checkout -b \"$1\" && git stash pop' -
+  move = !sh -c 'git add -A && git stash save && git checkout dev && git pull upstream dev --rebase && git checkout -b \"$1\" && git stash pop' -
   recent = branch --sort=-committerdate
 [gpg]
 	format = ssh
