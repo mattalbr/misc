@@ -1,17 +1,38 @@
 [pull]
+  # Since we don't do merges, every pull should be a rebase.
 	rebase = true
 [user]
 	name = Matthew Albrecht
 	email = matt@delfina.com
 	signingkey = /Users/matt/.ssh/id_ed25519.pub
 [alias]
+  # Gives a nice succinct status
 	st = status -sb
-	ll = log --oneline
-	last = log -1 HEAD --stat
+
+  # Adds all files, including untracked ones, to a commit
+  # with the given message. Nicer than git commit -am which leaves out untracked files.
+  # Usage: `git ca "Some commit message"`
   ca = !sh -c 'git add -A && git commit -m \"$1\"' -
+
+  # Push this branch to origin. More succinct than `git push origin my_branch_name`.
   po = "!git push --set-upstream origin \"$(git rev-parse --abbrev-ref HEAD)\""
+
+  # Pull from upstream dev with rebase.
   pu = "pull upstream dev --rebase"
+
+  # Git move is super handy when I accidentally did a bunch of work in the wrong branch.
+  # It stashes all your changes, checks out dev, syncs dev, creates a new branch,
+  # and then pops the changes.
+  # Usage: `git move new_branch_name`
   move = !sh -c 'git add -A && git stash save && git checkout dev && git pull upstream dev --rebase && git checkout -b \"$1\" && git stash pop' -
+
+  # Show recent branches that I've committed to.
   recent = branch --sort=-committerdate
+
+  # Show the log of recent commits with only the first line.
+	ll = log --oneline
+
+  # Show the most recent commit.
+	last = log -1 HEAD --stat
 [gpg]
 	format = ssh
