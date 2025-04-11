@@ -7,7 +7,7 @@
 	signingkey = /Users/matt/.ssh/id_ed25519.pub
 [alias]
   # Gives a nice succinct status
-	st = status -sb
+  st = status -sb
 
   # Adds all files, including untracked ones, to a commit
   # with the given message. Nicer than git commit -am which leaves out untracked files.
@@ -30,9 +30,9 @@
   recent = branch --sort=-committerdate
 
   # Show the log of recent commits with only the first line.
-	ll = log --oneline
+  ll = log --oneline
 
   # Show the most recent commit.
-	last = log -1 HEAD --stat
+  last = log -1 HEAD --stat
 [gpg]
-	format = ssh
+  format = ssh
